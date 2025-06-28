@@ -10,7 +10,9 @@ typedef struct {
     float Area;                  // Area da Cidade (em km²)
     float Pib;                   // PIB da cidade (em bilhões de reais)
     int Num_pontos_turisticos;   // Número de pontos turísticos na cidade
-   
+    float Densidade;        // População / Área
+    float Pib_per_capita;   // PIB / População
+
 } Carta;
 
  // Função para cadastrar as cartas
@@ -23,15 +25,15 @@ void inserirDadosCarta(Carta *carta) {
 
  // Solicitando o código da carta    
     printf("Digite o Codigo da carta (ex: A01, B03): "); //Uma string que representa o código da carta (ex: A01, B03).
-    scanf("%s", &carta->CodigoCarta);
+    scanf("%50s", &carta->CodigoCarta);
 
  // Solicitando o nome da cidade
     printf("Digite o Nome da Cidade: "); //Uma string que contém o nome da cidade.
-    scanf("%s", &carta->Cidade);
+    scanf("%50s", &carta->Cidade);
 
  // Solicitando a população   
     printf("Digite a população: "); //Um número inteiro representando a população da cidade.
-    scanf("%f", &carta->Populacao);
+    scanf("%d", &carta->Populacao);
   
  // Solicitando a área   
     printf("Digite a área (em km²): "); //A área da cidade em quilômetros quadrados (tipo float).
@@ -45,19 +47,25 @@ void inserirDadosCarta(Carta *carta) {
     printf("Digite o número de pontos turísticos: ");//O número de pontos turísticos na cidade (tipo int).
     scanf("%d", &carta->Num_pontos_turisticos);
     
+// Cálculos automáticos
+    carta->Densidade = carta->Populacao / carta->Area; //Calculo da Densidade Populacional, Divisao da população da cidade pela sua área.
+    carta->Pib_per_capita = carta->Pib / carta->Populacao; //Calculo do PIB per Capita, Divisao do PIB da cidade pela sua população.
+
     }
 
 // Função para exibir os dados das cartas
 
-void exibirCarta(Carta carta) {
-     printf("Estado: %c\n", carta.Estado);
-     printf("Código: %s\n", carta.CodigoCarta);
-     printf("Cidade: %s\n", carta.Cidade);
-     printf("População: %d\n", carta.Populacao);
-     printf("Área: %.2f km²\n", carta.Area);
-     printf("PIB: %.2f bilhoes de reais\n", carta.Pib);
-     printf("Número de pontos turísticos: %d\n", carta.Num_pontos_turisticos);
-   
+void exibirCarta(Carta *carta) {
+     printf("Estado: %c\n", carta->Estado);
+     printf("Código: %s\n", carta->CodigoCarta);
+     printf("Cidade: %s\n", carta->Cidade);
+     printf("População: %d\n", carta->Populacao);
+     printf("Área: %.2f km²\n", carta->Area);
+     printf("PIB: %.2f bilhoes de reais\n", carta->Pib);
+     printf("Número de pontos turísticos: %d\n", carta->Num_pontos_turisticos);
+     printf("Densidade populacional: %.2f hab/km²\n", carta->Densidade);
+     printf("PIB per capita: %.2f bilhões por habitante\n", carta->Pib_per_capita);
+
 }
 
 int main(){
@@ -74,12 +82,13 @@ int main(){
 
  // Exibir os dados das duas cartas
     printf("\nCarta 1: \n");// Função printf para imprimir
-    exibirCarta(carta1); //Exibe os dados de uma carta formatados de forma legível
+    exibirCarta(&carta1); //Exibe os dados de uma carta formatados de forma legível
 
     printf("\nCarta 2: \n");
-    exibirCarta(carta2); //Exibe os dados de uma carta formatados de forma legível
+    exibirCarta(&carta2); //Exibe os dados de uma carta formatados de forma legível
 
-
+  
+    
 return 0;
 
 }
