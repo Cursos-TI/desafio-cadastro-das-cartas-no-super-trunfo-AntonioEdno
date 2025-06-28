@@ -74,11 +74,11 @@ int main(){
 
  // Inserir dados para a primeira carta
     printf("\nInforme os dados da primeira carta:\n");
-    inserirDadosCarta(&carta1); //Solicita os dados ao usuário para preencher a estrutura Carta
+    inserirDadosCarta(&carta1); //Solicita os dados ao usuário para preencher a estrutura Carta 1
 
  // Inserir dados para a segunda carta
     printf("\nInforme os dados da segunda carta:\n");
-    inserirDadosCarta(&carta2); //Solicita os dados ao usuário para preencher a estrutura Carta
+    inserirDadosCarta(&carta2); //Solicita os dados ao usuário para preencher a estrutura Carta 2
 
  // Exibir os dados das duas cartas
     printf("\nCarta 1: \n");// Função printf para imprimir
