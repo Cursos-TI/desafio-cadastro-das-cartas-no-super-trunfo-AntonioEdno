@@ -5,7 +5,7 @@ typedef struct {
 
     char Estado;                 // Estado (A a H)
     char CodigoCarta[50];        // Código da carta (ex: A01, B03)
-    char Cidade[50];             // Nome da CIdade
+    char Cidade[50];             // Nome da Cidade
     int Populacao;               // População da Cidade
     float Area;                  // Area da Cidade (em km²)
     float Pib;                   // PIB da cidade (em bilhões de reais)
